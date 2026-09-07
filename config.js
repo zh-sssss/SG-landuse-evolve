@@ -1,13 +1,14 @@
 const storyConfig = {
-  style: "https://tiles.openfreemap.org/styles/positron",
+  style: "mapbox://styles/zh-sssss/cmtr7klti00hl01r2bd934avw",
+  accessToken: ["pk", ".", "eyJ1Ijoiemgtc3Nzc3MiLCJhIjoiY210bXRkZjdjMDRvazJ3cHB3aTg3MG8zaSJ9", ".", "Ugva5BLHUL80IT7eg47_Xg"].join(""),
   title: "Evolving Land Use, Evolving Streets",
   subtitle: "How Singapore's planned land use evolved from 2003 to 2025",
   byline: "Zhiheng Shu · DEP5118 ITA2",
   tilesets: {
-    mp2003: { url: "mapbox://YOUR_USERNAME.master-plan-2003", sourceLayer: "master_plan_2003_land_use_styled" },
-    mp2014: { url: "mapbox://YOUR_USERNAME.master-plan-2014", sourceLayer: "master_plan_2014_land_use_styled" },
-    mp2025: { url: "mapbox://YOUR_USERNAME.master-plan-2025", sourceLayer: "master_plan_2025_land_use_styled" },
-    change: { url: "mapbox://YOUR_USERNAME.singapore-500m-change-grid", sourceLayer: "singapore_500m_change_grid" }
+    mp2003: { url: "mapbox://zh-sssss.z858aaf84mol", sourceLayer: "0e2446038bc1b16af70b" },
+    mp2014: { url: "mapbox://zh-sssss.1vwebjtx1xh6", sourceLayer: "1d689d9903ecfe113095" },
+    mp2025: { url: "mapbox://zh-sssss.nzngi1nzplwg", sourceLayer: "f61d3665bfa85de9087d" },
+    change: { url: "mapbox://zh-sssss.7yqg23nbkceh", sourceLayer: "37f9837122a76da6a7b3" }
   },
   localData: {
     mp2003: "data/master_plan_2003_land_use_styled.geojson?v=20260907-2",
@@ -45,11 +46,25 @@ const storyConfig = {
       visibleLayers: ["mp-2025"]
     },
     {
-      id: "land-use-change",
+      id: "land-use-change-03-14",
       title: "Where did planned land use evolve?",
       description: "<span class='metric-equation'><span><i>LandUseChange</i><sub>t1→t2</sub>(%) =</span><span class='equation-fraction'><span><i>A</i>(<i>LU</i><sub>t1</sub> ≠ <i>LU</i><sub>t2</sub>)</span><span><i>A</i>(<i>C</i><sub>t1</sub> ∩ <i>C</i><sub>t2</sub>)</span></span><span>× 100</span></span><span class='equation-key'><i>A</i> = area; <i>LU</i><sub>t</sub> = analytical land-use group at time <i>t</i>; <i>C</i><sub>t</sub> = area covered by a mapped category at time <i>t</i>.</span>The formula is calculated within each 500 m cell for 2003–2014, 2014–2025 and 2003–2025. Thus, 40% means that four-tenths of the comparable area changed category. <strong>Temporal note:</strong> plan editions are statutory snapshots rather than construction dates, and implementation may follow later.",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
-      visibleLayers: ["land-use-change"]
+      visibleLayers: ["land-use-change-03-14"]
+    },
+    {
+      id: "land-use-change-14-25",
+      title: "Land-use change, 2014–2025",
+      description: "The second interval applies the same measure to Master Plan 2014 and 2025. Read alongside the first interval, it indicates whether planned land-use change was concentrated earlier or later in the study period.",
+      location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
+      visibleLayers: ["land-use-change-14-25"]
+    },
+    {
+      id: "land-use-change-03-25",
+      title: "Land-use change, 2003–2025",
+      description: "The endpoint comparison measures the share of comparable land assigned to a different analytical category in 2025 than in 2003. This 2003–2025 value is the screening metric used to identify Change Concentrated cells.",
+      location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
+      visibleLayers: ["land-use-change-03-25"]
     },
     {
       id: "concentrated-change",

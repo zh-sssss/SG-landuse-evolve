@@ -1,4 +1,4 @@
-/* global maplibregl, storyConfig */
+/* global mapboxgl, storyConfig */
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 window.scrollTo(0, 0);
@@ -11,12 +11,14 @@ const annualColours = [
   ["Special use and cemetery", "#b8ad9e"],
   ["Other and excluded", "#d9d5ca"]
 ];
-const allStoryLayers = ["mp-2003", "mp-2014", "mp-2025", "land-use-change", "change-concentrated", "change-concentrated-outline", "svi-points"];
+const allStoryLayers = ["mp-2003", "mp-2014", "mp-2025", "land-use-change-03-14", "land-use-change-14-25", "land-use-change-03-25", "change-concentrated", "change-concentrated-outline", "svi-points"];
 const layerOpacity = {
   "mp-2003": 0.84,
   "mp-2014": 0.84,
   "mp-2025": 0.84,
-  "land-use-change": 0.78,
+  "land-use-change-03-14": 0.78,
+  "land-use-change-14-25": 0.78,
+  "land-use-change-03-25": 0.78,
   "change-concentrated": 0.82,
   "change-concentrated-outline": 1,
   "svi-points": 1
@@ -52,7 +54,9 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   carousel.querySelector(".carousel-next").addEventListener("click", () => showSlide(activeIndex + 1));
 });
 
-const map = new maplibregl.Map({
+mapboxgl.accessToken = storyConfig.accessToken;
+
+const map = new mapboxgl.Map({
   container: "map",
   style: storyConfig.style,
   center: [103.8198, 1.3521],
@@ -61,42 +65,15 @@ const map = new maplibregl.Map({
   pitch: 0,
   scrollZoom: false
 });
-map.addControl(new maplibregl.NavigationControl(), "top-right");
-
-function sourceLayer(name) {
-  return storyConfig.tilesets[name].url.includes("YOUR_")
-    ? {}
-    : { "source-layer": storyConfig.tilesets[name].sourceLayer };
-}
-
-function addStorySource(name) {
-  const tileset = storyConfig.tilesets[name];
-  map.addSource(name, tileset.url.includes("YOUR_")
-    ? { type: "geojson", data: storyConfig.localData[name] }
-    : { type: "vector", url: tileset.url });
-}
+map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
 function addStoryLayers() {
-  ["mp2003", "mp2014", "mp2025", "change"].forEach(addStorySource);
-  [["mp-2003", "mp2003"], ["mp-2014", "mp2014"], ["mp-2025", "mp2025"]].forEach(([id, source]) => {
-    map.addLayer({ id, type: "fill", source, ...sourceLayer(source),
-      paint: { "fill-color": ["match", ["get", "lu_group"], ...annualColours.flat(), "#d9d5ca"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#ffffff" } });
-  });
-  map.addLayer({ id: "land-use-change", type: "fill", source: "change", ...sourceLayer("change"),
-    filter: ["==", ["get", "valid_change_cell"], true],
-    paint: { "fill-color": ["interpolate", ["linear"], ["get", "land_use_change_share_03_25"], 0, "#f7f4f9", 25, "#d4b9da", 50, "#c994c7", 75, "#df65b0", 100, "#7a0177"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#ffffff" } });
-  map.addLayer({ id: "change-concentrated", type: "fill", source: "change", ...sourceLayer("change"),
-    filter: ["==", ["get", "change_concentrated"], true],
-    paint: { "fill-color": "#d95f0e", "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#161616" } });
-  map.addLayer({ id: "change-concentrated-outline", type: "line", source: "change", ...sourceLayer("change"),
-    filter: ["==", ["get", "change_concentrated"], true],
-    paint: { "line-color": "#c44f32", "line-width": 2.5, "line-dasharray": [2, 2], "line-opacity": 0, "line-opacity-transition": transition } });
   map.addSource("svi", { type: "geojson", data: "data/svi_cases.geojson?v=20260907-2" });
   map.addLayer({ id: "svi-points", type: "circle", source: "svi", paint: { "circle-radius": 7, "circle-color": "#fff", "circle-opacity": 0, "circle-opacity-transition": transition, "circle-stroke-width": 3, "circle-stroke-color": "#111", "circle-stroke-opacity": 0, "circle-stroke-opacity-transition": transition } });
 
   map.on("click", "svi-points", (event) => {
     const p = event.features[0].properties;
-    new maplibregl.Popup().setLngLat(event.features[0].geometry.coordinates)
+    new mapboxgl.Popup().setLngLat(event.features[0].geometry.coordinates)
       .setHTML(`<strong>${p.place}</strong><br>${p.address}<br>Land-use change ${Number(p.land_use_change_share_03_25).toFixed(1)}%<br>${p.dominant_transition_03_25}`)
       .addTo(map);
   });
@@ -111,8 +88,13 @@ function setLegend(chapterId) {
     legend.innerHTML = "<h3>Selected SVI case</h3><div class='legend-row'><span style='width:24px;border-top:3px dashed #c44f32'></span>500 m hotspot cell</div><div class='legend-row'><span style='width:12px;height:12px;border:3px solid #111;border-radius:50%;background:#fff'></span>SVI viewpoint</div>";
   } else if (chapterId.startsWith("plan-")) {
     legend.innerHTML = `<h3>Planned land use</h3>${annualColours.map(([label, colour]) => `<div class="legend-row"><span class="swatch" style="background:${colour}"></span>${label}</div>`).join("")}`;
-  } else if (chapterId === "land-use-change") {
-    legend.innerHTML = "<h3>Land-use change, 2003–2025</h3><div class='legend-row'><span class='swatch' style='background:#f7f4f9'></span>0%</div><div class='legend-row'><span class='swatch' style='background:#c994c7'></span>50%</div><div class='legend-row'><span class='swatch' style='background:#7a0177'></span>100% of comparable land</div>";
+  } else if (chapterId.startsWith("land-use-change-")) {
+    const periods = {
+      "land-use-change-03-14": "2003–2014",
+      "land-use-change-14-25": "2014–2025",
+      "land-use-change-03-25": "2003–2025"
+    };
+    legend.innerHTML = `<h3>Land-use change, ${periods[chapterId]}</h3><div class='legend-row'><span class='swatch' style='background:#f7f4f9'></span>0%</div><div class='legend-row'><span class='swatch' style='background:#c994c7'></span>50%</div><div class='legend-row'><span class='swatch' style='background:#7a0177'></span>100% of comparable land</div>`;
   } else {
     legend.innerHTML = "<h3>Change Concentrated</h3><div class='legend-row'><span class='swatch' style='background:#d95f0e'></span>top 15% of valid cells</div>";
   }
@@ -154,5 +136,5 @@ map.on("load", () => {
 });
 
 map.on("error", (event) => {
-  if (!tokenMissing && event.error) console.error(event.error);
+  if (event.error) console.error(event.error);
 });
