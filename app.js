@@ -104,9 +104,12 @@ function addStoryLayers() {
 
 function setLegend(chapterId) {
   const legend = document.getElementById("legend");
-  if (["punggol", "bidadari", "jurong"].includes(chapterId)) {
+  legend.hidden = chapterId === "intro";
+  if (chapterId === "intro") {
+    legend.innerHTML = "";
+  } else if (["punggol", "bidadari", "jurong"].includes(chapterId)) {
     legend.innerHTML = "<h3>Selected SVI case</h3><div class='legend-row'><span style='width:24px;border-top:3px dashed #c44f32'></span>500 m hotspot cell</div><div class='legend-row'><span style='width:12px;height:12px;border:3px solid #111;border-radius:50%;background:#fff'></span>SVI viewpoint</div>";
-  } else if (chapterId.startsWith("plan-") || chapterId === "intro") {
+  } else if (chapterId.startsWith("plan-")) {
     legend.innerHTML = `<h3>Planned land use</h3>${annualColours.map(([label, colour]) => `<div class="legend-row"><span class="swatch" style="background:${colour}"></span>${label}</div>`).join("")}`;
   } else if (chapterId === "land-use-change") {
     legend.innerHTML = "<h3>Land-use change, 2003–2025</h3><div class='legend-row'><span class='swatch' style='background:#f7f4f9'></span>0%</div><div class='legend-row'><span class='swatch' style='background:#c994c7'></span>50%</div><div class='legend-row'><span class='swatch' style='background:#7a0177'></span>100% of comparable land</div>";

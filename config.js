@@ -21,7 +21,7 @@ const storyConfig = {
       title: "From Plan to Pavement",
       description: "To understand the transformation of Singapore’s urban fabric, this story compares shifts in planned land use across different periods to spotlight areas of major transition. Grounding these macro-level planning changes in everyday reality, we use historical Street View imagery to trace how physical streetscapes evolved, exploring the connection between top-down land-use shifts and on-the-ground street-level change.",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
-      visibleLayers: ["mp-2003"]
+      visibleLayers: []
     },
     {
       id: "plan-2003",
