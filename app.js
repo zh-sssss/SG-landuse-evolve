@@ -7,15 +7,16 @@ const annualColours = [
   ["Residential", "#e9b4ac"], ["Commercial and mixed use", "#d4574f"],
   ["Institutional and community", "#6f8fc7"], ["Park and recreation", "#70a86b"],
   ["Employment", "#9b7bb5"], ["Transport and infrastructure", "#8d9697"],
+  ["Reserve site", "#e7d899"], ["Waterbody", "#a8d5e5"],
+  ["Special use and cemetery", "#b8ad9e"],
   ["Other and excluded", "#d9d5ca"]
 ];
-const allStoryLayers = ["mp-2003", "mp-2014", "mp-2025", "mix-change", "destination-change", "change-concentrated", "change-concentrated-outline", "svi-points"];
+const allStoryLayers = ["mp-2003", "mp-2014", "mp-2025", "land-use-change", "change-concentrated", "change-concentrated-outline", "svi-points"];
 const layerOpacity = {
   "mp-2003": 0.84,
   "mp-2014": 0.84,
   "mp-2025": 0.84,
-  "mix-change": 0.78,
-  "destination-change": 0.78,
+  "land-use-change": 0.78,
   "change-concentrated": 0.82,
   "change-concentrated-outline": 1,
   "svi-points": 1
@@ -66,15 +67,12 @@ function addStoryLayers() {
     map.addLayer({ id, type: "fill", source, ...sourceLayer(source),
       paint: { "fill-color": ["match", ["get", "lu_group"], ...annualColours.flat(), "#d9d5ca"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#ffffff" } });
   });
-  map.addLayer({ id: "mix-change", type: "fill", source: "change", ...sourceLayer("change"),
+  map.addLayer({ id: "land-use-change", type: "fill", source: "change", ...sourceLayer("change"),
     filter: ["==", ["get", "valid_change_cell"], true],
-    paint: { "fill-color": ["interpolate", ["linear"], ["get", "delta_mix_03_25"], -0.4, "#7f3b8d", 0, "#f7f7f7", 0.4, "#238b45"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#ffffff" } });
-  map.addLayer({ id: "destination-change", type: "fill", source: "change", ...sourceLayer("change"),
-    filter: ["==", ["get", "valid_change_cell"], true],
-    paint: { "fill-color": ["interpolate", ["linear"], ["get", "delta_destination_03_25"], -50, "#9e3d50", 0, "#f7f7f7", 50, "#2878a6"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#ffffff" } });
+    paint: { "fill-color": ["interpolate", ["linear"], ["get", "land_use_change_share_03_25"], 0, "#f7f4f9", 25, "#d4b9da", 50, "#c994c7", 75, "#df65b0", 100, "#7a0177"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#ffffff" } });
   map.addLayer({ id: "change-concentrated", type: "fill", source: "change", ...sourceLayer("change"),
     filter: ["==", ["get", "change_concentrated"], true],
-    paint: { "fill-color": ["match", ["get", "change_type"], "Both increased", "#0f7c66", "Both decreased", "#8a3d74", "One or both decreased", "#d28a34", "#777777"], "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#161616" } });
+    paint: { "fill-color": "#d95f0e", "fill-opacity": 0, "fill-opacity-transition": transition, "fill-outline-color": "#161616" } });
   map.addLayer({ id: "change-concentrated-outline", type: "line", source: "change", ...sourceLayer("change"),
     filter: ["==", ["get", "change_concentrated"], true],
     paint: { "line-color": "#c44f32", "line-width": 2.5, "line-dasharray": [2, 2], "line-opacity": 0, "line-opacity-transition": transition } });
@@ -84,7 +82,7 @@ function addStoryLayers() {
   map.on("click", "svi-points", (event) => {
     const p = event.features[0].properties;
     new maplibregl.Popup().setLngLat(event.features[0].geometry.coordinates)
-      .setHTML(`<strong>${p.place}</strong><br>${p.address}<br>Δ mix ${Number(p.delta_mix_03_25).toFixed(3)}<br>Δ destination ${Number(p.delta_destination_03_25) >= 0 ? "+" : ""}${Number(p.delta_destination_03_25).toFixed(1)} pp`)
+      .setHTML(`<strong>${p.place}</strong><br>${p.address}<br>Land-use change ${Number(p.land_use_change_share_03_25).toFixed(1)}%<br>${p.dominant_transition_03_25}`)
       .addTo(map);
   });
 }
@@ -95,12 +93,10 @@ function setLegend(chapterId) {
     legend.innerHTML = "<h3>Selected SVI case</h3><div class='legend-row'><span style='width:24px;border-top:3px dashed #c44f32'></span>500 m hotspot cell</div><div class='legend-row'><span style='width:12px;height:12px;border:3px solid #111;border-radius:50%;background:#fff'></span>SVI viewpoint</div>";
   } else if (chapterId.startsWith("plan-") || chapterId === "intro") {
     legend.innerHTML = `<h3>Planned land use</h3>${annualColours.map(([label, colour]) => `<div class="legend-row"><span class="swatch" style="background:${colour}"></span>${label}</div>`).join("")}`;
-  } else if (chapterId === "mix-change") {
-    legend.innerHTML = "<h3>Δ mix, 2003–2025</h3><div class='legend-row'><span class='swatch' style='background:#7f3b8d'></span>less mixed</div><div class='legend-row'><span class='swatch' style='background:#f7f7f7'></span>little change</div><div class='legend-row'><span class='swatch' style='background:#238b45'></span>more mixed</div>";
-  } else if (chapterId === "destination-change") {
-    legend.innerHTML = "<h3>Δ destination share</h3><div class='legend-row'><span class='swatch' style='background:#9e3d50'></span>decrease</div><div class='legend-row'><span class='swatch' style='background:#f7f7f7'></span>little change</div><div class='legend-row'><span class='swatch' style='background:#2878a6'></span>increase</div>";
+  } else if (chapterId === "land-use-change") {
+    legend.innerHTML = "<h3>Land-use change, 2003–2025</h3><div class='legend-row'><span class='swatch' style='background:#f7f4f9'></span>0%</div><div class='legend-row'><span class='swatch' style='background:#c994c7'></span>50%</div><div class='legend-row'><span class='swatch' style='background:#7a0177'></span>100% of comparable land</div>";
   } else {
-    legend.innerHTML = "<h3>Change Concentrated</h3><div class='legend-row'><span class='swatch' style='background:#0f7c66'></span>both increased</div><div class='legend-row'><span class='swatch' style='background:#8a3d74'></span>both decreased</div><div class='legend-row'><span class='swatch' style='background:#d28a34'></span>mixed direction</div>";
+    legend.innerHTML = "<h3>Change Concentrated</h3><div class='legend-row'><span class='swatch' style='background:#d95f0e'></span>top 15% of valid cells</div>";
   }
 }
 
