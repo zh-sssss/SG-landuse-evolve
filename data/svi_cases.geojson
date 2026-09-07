@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "case_id": "S01", "place": "Punggol", "address": "309 Punggol Walk",
+        "grid_id": "r055c066", "cluster_id": 18, "change_concentration_score": 0.92189,
+        "delta_mix_03_14": 0.23661, "delta_destination_03_14": 44.94820,
+        "delta_mix_14_25": -0.00291, "delta_destination_14_25": -0.97972,
+        "delta_mix_03_25": 0.23370, "delta_destination_03_25": 43.96849,
+        "early_capture": "Apr 2011", "middle_capture": "Jun 2015", "recent_capture": "Mar 2025",
+        "heading_degrees": 39
+      },
+      "geometry": {"type": "Point", "coordinates": [103.9017668, 1.4083570]}
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "case_id": "S02", "place": "Bidadari", "address": "400 Upper Serangoon Road",
+        "grid_id": "r040c059", "cluster_id": 46, "change_concentration_score": 0.97106,
+        "delta_mix_03_14": 0.33789, "delta_destination_03_14": 26.30285,
+        "delta_mix_14_25": -0.00407, "delta_destination_14_25": -1.43502,
+        "delta_mix_03_25": 0.33382, "delta_destination_03_25": 24.86783,
+        "early_capture": "Nov 2008", "middle_capture": "Feb 2015", "recent_capture": "Mar 2024",
+        "heading_degrees": 90
+      },
+      "geometry": {"type": "Point", "coordinates": [103.8706343, 1.3392733]}
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "case_id": "S03", "place": "Jurong Gateway", "address": "50 Jurong Gateway Road",
+        "grid_id": "r039c031", "cluster_id": 52, "change_concentration_score": 0.94574,
+        "delta_mix_03_14": 0.29760, "delta_destination_03_14": 29.16218,
+        "delta_mix_14_25": 0.11404, "delta_destination_14_25": -5.63137,
+        "delta_mix_03_25": 0.41163, "delta_destination_03_25": 23.53081,
+        "early_capture": "Feb 2009", "middle_capture": "Aug 2015", "recent_capture": "Mar 2025",
+        "heading_degrees": 126
+      },
+      "geometry": {"type": "Point", "coordinates": [103.7439291, 1.3330840]}
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title description">
+  <title id="title">Street View image pending</title>
+  <desc id="description">Placeholder for a manually captured Google Street View image.</desc>
+  <rect width="800" height="600" fill="#d9ddd9"/>
+  <path d="M0 455 L185 305 L300 402 L455 245 L800 520 L800 600 L0 600 Z" fill="#9ca9a1"/>
+  <circle cx="640" cy="135" r="48" fill="#f4ead0"/>
+  <text x="400" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#26352e">Street View image pending</text>
+</svg>

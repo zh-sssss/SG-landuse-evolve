@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evolving Land Use, Evolving Streets</title>
+  <link href="https://unpkg.com/maplibre-gl@5.12.0/dist/maplibre-gl.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="map" aria-label="Interactive map of Singapore land-use change"></div>
+  <div id="status" class="status" hidden></div>
+  <main id="story">
+    <header id="hero" class="hero">
+      <div class="hero-inner">
+        <div class="byline" id="byline"></div>
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </div>
+    </header>
+    <section id="chapters" class="chapters"></section>
+    <footer class="card" style="margin:0 4vw 8vh;pointer-events:auto">
+      Data: URA Master Plan 2003, 2014 and 2025 Land Use via data.gov.sg. Street-level images: Google Street View, manually captured with attribution. Analysis uses a 500 m grid and is reproducible from the project scripts.
+    </footer>
+  </main>
+  <aside id="legend" class="legend" aria-live="polite"></aside>
+  <script src="https://unpkg.com/maplibre-gl@5.12.0/dist/maplibre-gl.js"></script>
+  <script src="config.js?v=20260907-1"></script>
+  <script src="app.js?v=20260905-1"></script>
+</body>
+</html>

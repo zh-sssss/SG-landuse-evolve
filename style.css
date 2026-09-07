@@ -1,0 +1,41 @@
+:root {
+  --ink: #16211d;
+  --muted: #5e6a65;
+  --paper: #f7f5ef;
+  --card: rgba(255, 255, 255, 0.94);
+  --accent: #d05a3b;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; }
+#map { position: fixed; inset: 0; }
+#story { position: relative; z-index: 2; pointer-events: none; }
+.hero { min-height: 80vh; display: flex; align-items: end; padding: 6vh 5vw; background: linear-gradient(90deg, rgba(18,31,27,.88), rgba(18,31,27,.18)); color: white; }
+.hero-inner { max-width: 660px; }
+.hero h1 { margin: 0 0 12px; font-size: clamp(2.2rem, 5vw, 4.8rem); line-height: .98; }
+.hero p { max-width: 620px; font-size: 1.05rem; line-height: 1.55; }
+.byline { letter-spacing: .04em; text-transform: uppercase; font-size: .78rem; opacity: .8; }
+.chapters { padding: 10vh 4vw 30vh; }
+.chapter { min-height: 78vh; display: flex; align-items: center; }
+.chapter:nth-child(even) { justify-content: flex-end; }
+.card { width: min(560px, 92vw); padding: 24px; background: var(--card); border-top: 5px solid var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,.2); pointer-events: auto; }
+.card h2 { margin: 0 0 12px; font-size: 1.55rem; }
+.card p { margin: 0; color: var(--muted); line-height: 1.55; }
+.image-pair { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.image-pair figure { margin: 0; }
+.image-pair img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #d9ddd9; }
+.image-pair figcaption { margin-top: 5px; font-size: .75rem; color: var(--muted); }
+.legend { position: fixed; right: 18px; bottom: 26px; z-index: 4; width: 220px; padding: 12px; background: rgba(255,255,255,.94); box-shadow: 0 4px 18px rgba(0,0,0,.18); font-size: .78rem; }
+.legend h3 { margin: 0 0 8px; font-size: .86rem; }
+.legend-row { display: flex; align-items: center; gap: 7px; margin: 4px 0; }
+.swatch { width: 18px; height: 10px; flex: none; }
+.status { position: fixed; z-index: 6; inset: 16px 16px auto 16px; padding: 12px 16px; color: #fff; background: #8b3028; pointer-events: auto; }
+.status code { color: #fff4d6; }
+.maplibregl-popup-content { font: 13px/1.4 Arial, sans-serif; }
+
+@media (max-width: 700px) {
+  .hero { min-height: 70vh; }
+  .chapters { padding-inline: 16px; }
+  .chapter, .chapter:nth-child(even) { justify-content: center; }
+  .legend { left: 16px; right: auto; bottom: 12px; width: 190px; }
+}
