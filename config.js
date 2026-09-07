@@ -10,10 +10,10 @@ const storyConfig = {
     change: { url: "mapbox://YOUR_USERNAME.singapore-500m-change-grid", sourceLayer: "singapore_500m_change_grid" }
   },
   localData: {
-    mp2003: "data/master_plan_2003_land_use_styled.geojson",
-    mp2014: "data/master_plan_2014_land_use_styled.geojson",
-    mp2025: "data/master_plan_2025_land_use_styled.geojson",
-    change: "data/singapore_500m_change_grid.geojson"
+    mp2003: "data/master_plan_2003_land_use_styled.geojson?v=20260907-2",
+    mp2014: "data/master_plan_2014_land_use_styled.geojson?v=20260907-2",
+    mp2025: "data/master_plan_2025_land_use_styled.geojson?v=20260907-2",
+    change: "data/singapore_500m_change_grid.geojson?v=20260907-2"
   },
   chapters: [
     {

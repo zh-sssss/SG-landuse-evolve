@@ -76,7 +76,7 @@ function addStoryLayers() {
   map.addLayer({ id: "change-concentrated-outline", type: "line", source: "change", ...sourceLayer("change"),
     filter: ["==", ["get", "change_concentrated"], true],
     paint: { "line-color": "#c44f32", "line-width": 2.5, "line-dasharray": [2, 2], "line-opacity": 0, "line-opacity-transition": transition } });
-  map.addSource("svi", { type: "geojson", data: "data/svi_cases.geojson" });
+  map.addSource("svi", { type: "geojson", data: "data/svi_cases.geojson?v=20260907-2" });
   map.addLayer({ id: "svi-points", type: "circle", source: "svi", paint: { "circle-radius": 7, "circle-color": "#fff", "circle-opacity": 0, "circle-opacity-transition": transition, "circle-stroke-width": 3, "circle-stroke-color": "#111", "circle-stroke-opacity": 0, "circle-stroke-opacity-transition": transition } });
 
   map.on("click", "svi-points", (event) => {
