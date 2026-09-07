@@ -81,7 +81,7 @@ const storyConfig = {
     {
       id: "jurong",
       title: "Jurong Gateway: regional centre",
-      description: "In selected cell r039c031, <strong>41.6% of comparable land changed category</strong> from 2003 to 2025; the largest transition was Reserve site → Institutional and community.<br><strong>By interval:</strong> 27.3% (2003–2014) → 16.2% (2014–2025). The 2009 construction site becomes Big Box by 2015, marking the main visible shift from vacant frontage to an active building edge. By 2025, the building is Perennial Business City and planting is more mature.",
+      description: "In selected cell r039c031, <strong>41.6%</strong> of comparable land changed category from 2003 to 2025; the largest transition was Reserve site → Institutional and community.<br><strong>By interval:</strong> 27.3% (2003–2014) → 16.2% (2014–2025). The 2009 construction site becomes Big Box by 2015, marking the main visible shift from vacant frontage to an active building edge. By 2025, the building is Perennial Business City and planting is more mature.",
       images: ["images/jurong_2009.png", "images/jurong_2015.png", "images/jurong_2025.png"],
       captions: ["Feb 2009", "Aug 2015", "Mar 2025"],
       gridId: "r039c031",
