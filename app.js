@@ -32,9 +32,24 @@ storyConfig.chapters.forEach((chapter) => {
   const section = document.createElement("article");
   section.id = chapter.id;
   section.className = "chapter";
-  const images = chapter.images ? `<div class="image-pair">${chapter.images.map((src, i) => `<figure><img src="${src}" alt="${chapter.title}, ${chapter.captions[i]}" onerror="this.onerror=null;this.src='images/pending.svg'"><figcaption>${chapter.captions[i]} · Google Street View</figcaption></figure>`).join("")}</div>` : "";
+  const images = chapter.images ? `<div class="image-carousel" data-carousel>${chapter.images.map((src, i) => `<figure${i === 0 ? "" : " hidden"}><img src="${src}" alt="${chapter.title}, ${chapter.captions[i]}" onerror="this.onerror=null;this.src='images/pending.svg'"><figcaption>${chapter.captions[i]} · Google Street View</figcaption></figure>`).join("")}<button class="carousel-button carousel-previous" type="button" aria-label="Previous SVI">‹</button><button class="carousel-button carousel-next" type="button" aria-label="Next SVI">›</button><span class="carousel-count" aria-live="polite">1 / ${chapter.images.length}</span></div>` : "";
   section.innerHTML = `<div class="card"><h2>${chapter.title}</h2><p>${chapter.description}</p>${images}</div>`;
   chapterRoot.appendChild(section);
+});
+
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const slides = [...carousel.querySelectorAll("figure")];
+  const count = carousel.querySelector(".carousel-count");
+  let activeIndex = 0;
+
+  function showSlide(nextIndex) {
+    activeIndex = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, index) => { slide.hidden = index !== activeIndex; });
+    count.textContent = `${activeIndex + 1} / ${slides.length}`;
+  }
+
+  carousel.querySelector(".carousel-previous").addEventListener("click", () => showSlide(activeIndex - 1));
+  carousel.querySelector(".carousel-next").addEventListener("click", () => showSlide(activeIndex + 1));
 });
 
 const map = new maplibregl.Map({
