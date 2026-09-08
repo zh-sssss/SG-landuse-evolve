@@ -2,7 +2,7 @@ const storyConfig = {
   style: "mapbox://styles/zh-sssss/cmtr7klti00hl01r2bd934avw",
   accessToken: ["pk", ".", "eyJ1Ijoiemgtc3Nzc3MiLCJhIjoiY210bXRkZjdjMDRvazJ3cHB3aTg3MG8zaSJ9", ".", "Ugva5BLHUL80IT7eg47_Xg"].join(""),
   title: "Evolving Land Use, Evolving Streets",
-  subtitle: "How Singapore's planned land use evolved from 2003 to 2025",
+  subtitle: "How Singapore's planned land use and street views evolved from 2003 to 2025",
   byline: "Zhiheng Shu · DEP5118 ITA2",
   tilesets: {
     mp2003: { url: "mapbox://zh-sssss.z858aaf84mol", sourceLayer: "0e2446038bc1b16af70b" },
