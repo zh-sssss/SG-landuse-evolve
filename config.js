@@ -19,8 +19,8 @@ const storyConfig = {
   chapters: [
     {
       id: "intro",
-      title: "From Plan to Pavement",
-      description: "To understand the transformation of Singapore’s urban fabric, this story compares shifts in planned land use across different periods to spotlight areas of major transition. Grounding these macro-level planning changes in everyday reality, we use historical Street View imagery to trace how physical streetscapes evolved, exploring the connection between top-down land-use shifts and on-the-ground street-level change.",
+      title: "Plans and Street-Level Change",
+      description: "This story maps how Singapore’s planned land-use categories evolved between 2003, 2014 and 2025. A 500 m grid identifies where plan-to-plan category changes were concentrated and guides the selection of three street-level cases. Historical Google Street View images are then compared independently to describe visible changes in frontage, enclosure, greenery and pedestrian space. The map and images are read alongside each other: Street View does not measure land-use change or prove that planning decisions caused the observed streetscape changes.",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: []
     },
@@ -66,7 +66,7 @@ const storyConfig = {
     {
       id: "land-use-change-03-25",
       title: "Land-use change, 2003–2025",
-      description: "<span class='analysis-points'><span>Across the full period, persistent clusters appear in the western growth belt, Punggol–Seletar, the eastern planning fringe and the southern waterfront.</span><span>Most large endpoint changes involve reserve, employment, residential or park categories. The 2003–2025 result is used to select the Change Concentrated cells.</span></span>",
+      description: "<span class='analysis-points'><span>Across the full period, persistent clusters appear in the western growth belt, Punggol–Seletar, the eastern planning fringe and the southern waterfront.</span><span>Most land-use changes involve reserve, employment, residential or park categories. The 2003–2025 result is used to select the Change Concentrated cells.</span></span>",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: ["land-use-change-03-25"]
     },
