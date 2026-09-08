@@ -75,7 +75,7 @@ function addStoryLayers() {
   map.on("click", "svi-points", (event) => {
     const p = event.features[0].properties;
     new mapboxgl.Popup().setLngLat(event.features[0].geometry.coordinates)
-      .setHTML(`<strong>${p.place}</strong><br>${p.address}<br>Land-use change ${Number(p.land_use_change_share_03_25).toFixed(1)}%<br>${p.dominant_transition_03_25}`)
+      .setHTML(`<strong>${p.place}</strong><br>${p.address}<br>Planned land-use change ${Number(p.land_use_change_share_03_25).toFixed(1)}%<br>${p.dominant_transition_03_25}`)
       .addTo(map);
   });
 }
@@ -95,7 +95,7 @@ function setLegend(chapterId) {
       "land-use-change-14-25": "2014–2025",
       "land-use-change-03-25": "2003–2025"
     };
-    legend.innerHTML = `<h3>Land-use change, ${periods[chapterId]}</h3><div class='legend-row'><span class='swatch' style='background:#f7f4f9'></span>0%</div><div class='legend-row'><span class='swatch' style='background:#c994c7'></span>50%</div><div class='legend-row'><span class='swatch' style='background:#7a0177'></span>100% of comparable land</div>`;
+    legend.innerHTML = `<h3>Planned land-use change, ${periods[chapterId]}</h3><div class='legend-row'><span class='swatch' style='background:#f7f4f9'></span>0%</div><div class='legend-row'><span class='swatch' style='background:#c994c7'></span>50%</div><div class='legend-row'><span class='swatch' style='background:#7a0177'></span>100% of comparable mapped area</div>`;
   } else {
     legend.innerHTML = "<h3>Change Concentrated</h3><div class='legend-row'><span class='swatch' style='background:#d95f0e'></span>top 15% of valid cells</div>";
   }
