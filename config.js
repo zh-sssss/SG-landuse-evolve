@@ -51,7 +51,7 @@ const storyConfig = {
       description: "<span class='metric-equation'><span><i>LandUseChange</i><sub>t1→t2</sub>(%) =</span><span class='equation-fraction'><span><i>A</i>(<i>LU</i><sub>t1</sub> ≠ <i>LU</i><sub>t2</sub>)</span><span><i>A</i>(<i>C</i><sub>t1</sub> ∩ <i>C</i><sub>t2</sub>)</span></span><span>× 100</span></span><span class='equation-key'><i>A</i> = area; <i>LU</i><sub>t</sub> = analytical land-use group at time <i>t</i>; <i>C</i><sub>t</sub> = area covered by a mapped category at time <i>t</i>.</span>The formula is calculated within each 500 m cell for 2003–2014, 2014–2025 and 2003–2025. Thus, 40% means that four-tenths of the comparable area changed category. <strong>Temporal note:</strong> plan editions are statutory snapshots rather than construction dates, and implementation may follow later.",
       companion: {
         title: "Land-use change, 2003–2014",
-        description: "The first interval applies the measure to Master Plan 2003 and 2014. It shows where planned land-use categories were reassigned during the earlier part of the study period and provides a direct comparison with 2014–2025."
+        description: "<span class='analysis-points'><span>High-change cells cluster around Punggol–Seletar, the Tengah–Jurong belt, Changi East and the southern port edge.</span><span>Compared with 2014–2025, change is more pronounced in the north-east; reserve-to-employment and reserve-to-residential shifts are especially common.</span></span>"
       },
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: ["land-use-change-03-14"]
@@ -59,14 +59,14 @@ const storyConfig = {
     {
       id: "land-use-change-14-25",
       title: "Land-use change, 2014–2025",
-      description: "The second interval applies the same measure to Master Plan 2014 and 2025. Read alongside the first interval, it indicates whether planned land-use change was concentrated earlier or later in the study period.",
+      description: "<span class='analysis-points'><span>High-change cells concentrate along the western and northern development belt—Tengah–Jurong, Sungei Kadut and Lim Chu Kang—and around the Paya Lebar Air Base and Changi areas.</span><span>Compared with 2003–2014, the emphasis shifts away from Punggol–Seletar towards western and northern redevelopment; reserve-to-residential change becomes more prominent.</span></span>",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: ["land-use-change-14-25"]
     },
     {
       id: "land-use-change-03-25",
       title: "Land-use change, 2003–2025",
-      description: "The endpoint comparison measures the share of comparable land assigned to a different analytical category in 2025 than in 2003. This 2003–2025 value is the screening metric used to identify Change Concentrated cells.",
+      description: "<span class='analysis-points'><span>Across the full period, persistent clusters appear in the western growth belt, Punggol–Seletar, the eastern planning fringe and the southern waterfront.</span><span>Most large endpoint changes involve reserve, employment, residential or park categories. The 2003–2025 result is used to select the Change Concentrated cells.</span></span>",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: ["land-use-change-03-25"]
     },

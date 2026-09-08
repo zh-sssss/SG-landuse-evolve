@@ -87,6 +87,10 @@ html, body { margin: 0; color: var(--ink); background: var(--paper); font-family
   font-size: .83em;
   line-height: 1.4;
 }
+.analysis-points { display: block; }
+.analysis-points > span { display: block; position: relative; padding-left: 1em; }
+.analysis-points > span + span { margin-top: .55em; }
+.analysis-points > span::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
 .swatch { width: 18px; height: 10px; flex: none; }
 .status { position: fixed; z-index: 6; inset: 16px 16px auto 16px; padding: 12px 16px; color: #fff; background: #8b3028; pointer-events: auto; }
 .status code { color: #fff4d6; }
