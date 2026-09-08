@@ -33,9 +33,10 @@ const chapterRoot = document.getElementById("chapters");
 storyConfig.chapters.forEach((chapter) => {
   const section = document.createElement("article");
   section.id = chapter.id;
-  section.className = "chapter";
+  section.className = chapter.companion ? "chapter chapter-paired" : "chapter";
   const images = chapter.images ? `<div class="image-carousel" data-carousel>${chapter.images.map((src, i) => `<figure${i === 0 ? "" : " hidden"}><img src="${src}" alt="${chapter.title}, ${chapter.captions[i]}" onerror="this.onerror=null;this.src='images/pending.svg'"><figcaption>${chapter.captions[i]} · Google Street View</figcaption></figure>`).join("")}<button class="carousel-button carousel-previous" type="button" aria-label="Previous SVI">‹</button><button class="carousel-button carousel-next" type="button" aria-label="Next SVI">›</button><span class="carousel-count" aria-live="polite">1 / ${chapter.images.length}</span></div>` : "";
-  section.innerHTML = `<div class="card"><h2>${chapter.title}</h2><p>${chapter.description}</p>${images}</div>`;
+  const companion = chapter.companion ? `<div class="card companion-card"><h2>${chapter.companion.title}</h2><p>${chapter.companion.description}</p></div>` : "";
+  section.innerHTML = `<div class="card"><h2>${chapter.title}</h2><p>${chapter.description}</p>${images}</div>${companion}`;
   chapterRoot.appendChild(section);
 });
 

@@ -18,7 +18,9 @@ html, body { margin: 0; color: var(--ink); background: var(--paper); font-family
 .chapters { padding: 10vh 4vw 30vh; }
 .chapter { min-height: 78vh; display: flex; align-items: center; }
 .chapter:nth-child(even) { justify-content: flex-end; }
+.chapter-paired { justify-content: space-between; gap: 28px; }
 .card { width: min(560px, 92vw); padding: 24px; background: var(--card); border-top: 5px solid var(--accent); box-shadow: 0 8px 30px rgba(0,0,0,.2); pointer-events: auto; }
+.companion-card { width: min(390px, 92vw); }
 .card h2 { margin: 0 0 12px; font-size: 1.55rem; }
 .card p { margin: 0; color: var(--muted); line-height: 1.55; }
 .image-carousel { position: relative; margin-top: 16px; }
@@ -94,5 +96,6 @@ html, body { margin: 0; color: var(--ink); background: var(--paper); font-family
   .hero { min-height: 70vh; }
   .chapters { padding-inline: 16px; }
   .chapter, .chapter:nth-child(even) { justify-content: center; }
+  .chapter-paired { flex-direction: column; justify-content: center; padding-block: 8vh; }
   .legend { left: 16px; right: auto; bottom: 12px; width: 190px; }
 }

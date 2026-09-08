@@ -49,6 +49,10 @@ const storyConfig = {
       id: "land-use-change-03-14",
       title: "Where did planned land use evolve?",
       description: "<span class='metric-equation'><span><i>LandUseChange</i><sub>t1→t2</sub>(%) =</span><span class='equation-fraction'><span><i>A</i>(<i>LU</i><sub>t1</sub> ≠ <i>LU</i><sub>t2</sub>)</span><span><i>A</i>(<i>C</i><sub>t1</sub> ∩ <i>C</i><sub>t2</sub>)</span></span><span>× 100</span></span><span class='equation-key'><i>A</i> = area; <i>LU</i><sub>t</sub> = analytical land-use group at time <i>t</i>; <i>C</i><sub>t</sub> = area covered by a mapped category at time <i>t</i>.</span>The formula is calculated within each 500 m cell for 2003–2014, 2014–2025 and 2003–2025. Thus, 40% means that four-tenths of the comparable area changed category. <strong>Temporal note:</strong> plan editions are statutory snapshots rather than construction dates, and implementation may follow later.",
+      companion: {
+        title: "Land-use change, 2003–2014",
+        description: "The first interval applies the measure to Master Plan 2003 and 2014. It shows where planned land-use categories were reassigned during the earlier part of the study period and provides a direct comparison with 2014–2025."
+      },
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: ["land-use-change-03-14"]
     },
