@@ -1,6 +1,6 @@
 const storyConfig = {
   style: "mapbox://styles/zh-sssss/cmtr7klti00hl01r2bd934avw",
-  accessToken: ["pk", ".", "eyJ1Ijoiemgtc3Nzc3MiLCJhIjoiY210bXRkZjdjMDRvazJ3cHB3aTg3MG8zaSJ9", ".", "Ugva5BLHUL80IT7eg47_Xg"].join(""),
+  accessToken: ["pk", ".", "eyJ1Ijoiemgtc3Nzc3MiLCJhIjoiY210c2JueGdiMDFzYjJ5cXRqYzd0MTcyaCJ9", ".", "yMIq44siZaVKepdBkc0Pfg"].join(""),
   title: "Evolving Land Use, Evolving Streets",
   subtitle: "How Singapore's planned land use evolved from 2003 to 2025, alongside changes in selected street environments",
   byline: "Zhiheng Shu · DEP5118 ITA2",
