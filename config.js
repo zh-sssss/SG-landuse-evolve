@@ -20,7 +20,7 @@ const storyConfig = {
     {
       id: "intro",
       title: "Plans and Street-Level Change",
-      description: "This story maps how Singapore’s planned land-use categories evolved between 2003, 2014 and 2025. A 500 m grid identifies where plan-to-plan category changes were concentrated and guides the selection of three street-level cases. Historical Google Street View images are then compared independently to describe visible changes in frontage, enclosure, greenery and pedestrian space. The map and images are read alongside each other: Street View does not measure land-use change or prove that planning decisions caused the observed streetscape changes.",
+      description: "This story maps Singapore’s planned land-use changes and visible street-level changes in parallel to examine how city-scale planning transitions correspond with the evolution of selected everyday street environments. A 500 m grid identifies where plan-to-plan category changes were concentrated and guides the selection of three street-level cases. Historical Google Street View images are then compared independently to describe visible changes in street environments. The map and images are read alongside each other: Street View does not measure land-use change or prove that planning decisions caused the observed streetscape changes.",
       location: { center: [103.8198, 1.3521], zoom: 10.8, bearing: 0, pitch: 0 },
       visibleLayers: []
     },
